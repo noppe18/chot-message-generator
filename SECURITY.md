@@ -8,7 +8,7 @@ VS Code's built-in "Generate Commit Message" is broken, so older versions are no
 ## Reporting a vulnerability
 
 Please report privately through GitHub's
-[private vulnerability reporting](https://github.com/noppe18/commit-message-generator/security/advisories/new)
+[private vulnerability reporting](https://github.com/noppe18/chot-message-generator/security/advisories/new)
 rather than opening a public issue.
 
 Include what you did, what happened, and what you expected. A minimal reproduction —

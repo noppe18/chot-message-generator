@@ -96,7 +96,7 @@ VS Code 標準の「Generate Commit Message」（GitHub Copilot 提供）が動�
 ## 4. ディレクトリ構成
 
 ```
-commit-message-generator/
+chot-message-generator/
 ├── package.json
 ├── tsconfig.json
 ├── LICENSE                       # MIT
@@ -742,8 +742,8 @@ if actual > model.maxInputTokens: return err({ kind: 'diff-too-large' })
 
 ```jsonc
 {
-  "name": "commit-message-generator",
-  "displayName": "Commit Message Generator",
+  "name": "chot-message-generator",
+  "displayName": "Chot Message Generator",
   "description": "Generate a git commit message from your staged changes using the VS Code Language Model API.",
   "version": "0.1.0",
   "publisher": "noppe18",
