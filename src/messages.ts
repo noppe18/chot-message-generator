@@ -72,5 +72,5 @@ export const MESSAGES = {
 	modelFallback: (requestedId: string): string =>
 		`Model "${requestedId}" is not available. Used "auto" instead.`,
 	pickRepositoryPlaceholder: 'Select the repository to generate a commit message for',
-	outputChannelName: 'Commit Message Generator',
+	outputChannelName: 'Chot Message Generator',
 } as const;
