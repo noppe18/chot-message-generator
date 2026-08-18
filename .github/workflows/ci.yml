@@ -23,11 +23,38 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Deliberately before install. The guard inspects the lockfile for packages resolving
+      # outside the npm registry, so it has to run while nothing has been fetched yet —
+      # afterwards is too late to matter. It has no dependencies of its own for the same
+      # reason: a guard installed by the supply chain it polices guards nothing.
+      - run: npm run guard
+
       # --ignore-scripts blocks install hooks, the usual way a compromised dependency gets
       # code execution on a build machine. Verified to work here: esbuild declares a
       # postinstall but resolves its platform binary through optionalDependencies.
       - run: npm ci --ignore-scripts
 
+      # Checks that what actually landed on disk was signed by the registry. The lockfile's
+      # integrity hashes only prove the bytes match what the lockfile expected; this proves
+      # the registry itself vouches for them.
+      - run: npm audit signatures
+
       - run: npm run lint
       - run: npm test
       - run: npm run build
+
+  # Blocks pull requests that introduce dependencies with known vulnerabilities or
+  # incompatible licenses. Runs only on pull requests, which is the only place it can
+  # compare a base and a head.
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: moderate
+          comment-summary-in-pr: on-failure
