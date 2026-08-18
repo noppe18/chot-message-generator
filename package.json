@@ -8,6 +8,14 @@
     "name": "Taigo Nakajima"
   },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noppe18/commit-message-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/noppe18/commit-message-generator/issues"
+  },
+  "homepage": "https://github.com/noppe18/commit-message-generator#readme",
   "preview": true,
   "pricing": "Free",
   "keywords": [

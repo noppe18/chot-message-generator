@@ -75,7 +75,7 @@ npm run build   # type-check + bundle
 
 Press <kbd>F5</kbd> to launch an Extension Development Host.
 
-Design notes, and an architecture decision record for each non-obvious choice, live under `docs/` in the source repository.
+Design notes, and an architecture decision record for each non-obvious choice, live in [`docs/`](./docs).
 
 ## License
 
