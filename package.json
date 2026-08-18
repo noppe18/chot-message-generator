@@ -1,0 +1,94 @@
+{
+  "name": "commit-message-generator",
+  "displayName": "Commit Message Generator",
+  "description": "Generate a git commit message from your staged changes using the VS Code Language Model API.",
+  "version": "0.1.0",
+  "publisher": "noppe18",
+  "author": {
+    "name": "Taigo Nakajima"
+  },
+  "license": "MIT",
+  "preview": true,
+  "pricing": "Free",
+  "keywords": [
+    "git",
+    "scm",
+    "commit",
+    "commit-message",
+    "ai",
+    "language-model"
+  ],
+  "categories": [
+    "SCM Providers",
+    "Other"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "main": "./dist/extension.js",
+  "icon": "images/icon.png",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "Staged diffs and custom instruction files are sent to a language model, so the workspace contents must be trusted."
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Requires a local Git repository through the built-in Git extension."
+    }
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "commitMessageGenerator.generate",
+        "title": "Generate Commit Message",
+        "category": "Commit Message Generator",
+        "icon": "$(sparkle)"
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "commitMessageGenerator.generate",
+          "group": "navigation",
+          "when": "scmProvider == git"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Commit Message Generator",
+      "properties": {
+        "commitMessageGenerator.model": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Identifier of the language model to use, matched exactly against the model `id` (for example `gpt-5.1`). When empty, or when the specified model is not available, `auto` is used instead."
+        },
+        "commitMessageGenerator.recentCommitCount": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "maximum": 50,
+          "markdownDescription": "Number of recent commit messages to include as a style reference. Set to `0` to disable."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . --watch",
+    "bundle": "esbuild src/extension.ts --bundle --platform=node --format=cjs --target=node20 --external:vscode --outfile=dist/extension.js --minify --sourcemap",
+    "build": "npm run compile && npm run bundle",
+    "test": "npm run compile && node --test \"out/test/**/*.test.js\"",
+    "lint": "eslint src test",
+    "vscode:prepublish": "npm run build",
+    "package:vsix": "npx --yes @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "~1.90.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^9.39.5",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.67.0"
+  }
+}

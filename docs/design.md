@@ -529,7 +529,8 @@ export const pickRepository = async (
    const uri = (commandArg as { rootUri?: unknown })?.rootUri;
    const handle = uri instanceof vscode.Uri ? git.getRepositoryByUri(uri) : undefined;
    ```
-   - **Why 防御的なのか**: `scm/title` メニューから渡される引数の実型は VS Code のバージョン間で変わり得るうえ、本設計時点で実地検証できていない。`rootUri` が取れれば使い、取れなければ静かに次の手段へ落ちる形にしておけば、引数の型に関する仮定がどう転んでも壊れない。
+   - **引数の実型（確認済み）**: `SCMViewPane.getActionsContext()` は「表示中のリポジトリがちょうど 1 つのときだけ」その `provider` を返し、複数なら `undefined` を返す。これが `MainThreadSCMProvider.toJSON()` で `{ $mid: MarshalledId.ScmProvider, handle }` になり、`ExtHostCommands.processArgument` が拡張向けの `vscode.SourceControl` に戻す。つまり**引数は `SourceControl`（`rootUri` を持つ）か、`undefined`**。
+   - **Why それでも防御的に扱うのか**: 複数リポジトリのワークスペースでビュータイトルのアイコンを押すと引数が来ない。個々のリポジトリ行のアイコンからは来る（行のツールバーが `repository.provider` を context に持つため）。つまり引数は**あくまでヒントであって前提にできない**。`rootUri` が取れなければ静かに次の手段へ落ちる形にしておけば、この場合分けを呼び出し側が意識せずに済む。
 2. `git.getSelectedRepositories()` がちょうど 1 件ならそれ。
 3. `activeEditorUri`（`vscode.window.activeTextEditor?.document.uri`。呼び出し元の `extension.ts` で取得して渡す）から `getRepositoryByUri` で引けたらそれ。
 4. `git.getRepositories()` が 1 件ならそれ。
