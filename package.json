@@ -1,5 +1,5 @@
 {
-  "name": "commit-message-generator",
+  "name": "staged-commit-message-generator",
   "displayName": "Commit Message Generator",
   "description": "Generate a git commit message from your staged changes using the VS Code Language Model API.",
   "version": "0.1.0",

@@ -4,6 +4,8 @@ test/**
 out/**
 docs/**
 scripts/**
+.github/**
+SECURITY.md
 node_modules/**
 tsconfig.json
 eslint.config.js
