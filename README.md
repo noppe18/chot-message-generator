@@ -1,4 +1,4 @@
-# Commit Message Generator
+# Chot Message Generator
 
 Generates a git commit message from your **staged** changes using the VS Code Language Model API, and writes it into the Source Control commit message box.
 

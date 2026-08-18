@@ -1,6 +1,6 @@
 {
-  "name": "staged-commit-message-generator",
-  "displayName": "Commit Message Generator",
+  "name": "chot-message-generator",
+  "displayName": "Chot Message Generator",
   "description": "Generate a git commit message from your staged changes using the VS Code Language Model API.",
   "version": "0.1.0",
   "publisher": "noppe18",
@@ -10,12 +10,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/noppe18/commit-message-generator.git"
+    "url": "https://github.com/noppe18/chot-message-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/noppe18/commit-message-generator/issues"
+    "url": "https://github.com/noppe18/chot-message-generator/issues"
   },
-  "homepage": "https://github.com/noppe18/commit-message-generator#readme",
+  "homepage": "https://github.com/noppe18/chot-message-generator#readme",
   "preview": true,
   "pricing": "Free",
   "keywords": [
@@ -50,7 +50,7 @@
       {
         "command": "commitMessageGenerator.generate",
         "title": "Generate Commit Message",
-        "category": "Commit Message Generator",
+        "category": "Chot Message Generator",
         "icon": "$(sparkle)"
       }
     ],
@@ -64,7 +64,7 @@
       ]
     },
     "configuration": {
-      "title": "Commit Message Generator",
+      "title": "Chot Message Generator",
       "properties": {
         "commitMessageGenerator.model": {
           "type": "string",
