@@ -1,0 +1,20 @@
+version: 2
+updates:
+  # This extension ships zero runtime dependencies, so npm updates only ever touch the build
+  # toolchain. That is still worth watching: anything that runs during `npm ci` or `npm run
+  # build` sits on the same machine as the Marketplace publishing token.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      dev-dependencies:
+        patterns: ["*"]
+
+  # Actions are pinned to commit SHAs, which stops a moved tag from silently changing what
+  # runs in CI. Dependabot is what keeps those pins from going stale.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
