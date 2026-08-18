@@ -8,6 +8,20 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 5
+    ignore:
+      # Deliberately pinned to match engines.vscode. The pin is what guarantees the
+      # compiler only ever shows APIs that exist in the oldest VS Code we claim to
+      # support; raising it would let code that crashes on 1.90 pass CI silently.
+      # Move this together with engines.vscode, by hand, as a conscious decision.
+      - dependency-name: "@types/vscode"
+
+      # typescript-eslint declares `typescript: >=4.8.4 <6.1.0` as a peer, so a major
+      # TypeScript bump on its own cannot install at all — npm ci fails with ERESOLVE.
+      # Blocking majors here stops Dependabot from reopening that broken PR every week.
+      # REMOVE THIS once typescript-eslint ships a release whose peer range admits the
+      # next TypeScript major; the two must then move together.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       dev-dependencies:
         patterns: ["*"]
