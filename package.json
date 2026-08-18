@@ -88,6 +88,7 @@
     "build": "npm run compile && npm run bundle",
     "test": "npm run compile && node --test \"out/test/**/*.test.js\"",
     "lint": "eslint src test",
+    "guard": "node scripts/supply-chain-guard.mjs",
     "vscode:prepublish": "npm run build",
     "package:vsix": "npx --yes @vscode/vsce package"
   },
