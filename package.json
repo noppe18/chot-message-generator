@@ -93,11 +93,11 @@
     "package:vsix": "npx --yes @vscode/vsce package"
   },
   "devDependencies": {
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.4.1",
     "@types/vscode": "~1.90.0",
     "esbuild": "^0.28.1",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "typescript": "^5.7.2",
-    "typescript-eslint": "^8.68.0"
+    "typescript-eslint": "^8.69.0"
   }
 }
